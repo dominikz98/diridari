@@ -41,6 +41,8 @@ object ShapeRenderer {
 
     fun color(shape: CountdownShape): Int = geometries.getValue(shape).color
 
+    fun color(countdown: Countdown): Int = countdown.color ?: color(countdown.shape)
+
     /**
      * @param sizeDp kleinere Seite des Widgets in dp; darunter fällt der Name weg.
      */
@@ -48,6 +50,7 @@ object ShapeRenderer {
         val bitmap = Bitmap.createBitmap(widthPx.coerceAtLeast(1), heightPx.coerceAtLeast(1), Bitmap.Config.ARGB_8888)
         val canvas = Canvas(bitmap)
         val geometry = geometries.getValue(countdown.shape)
+        val color = color(countdown)
 
         val size = min(widthPx, heightPx).toFloat()
         val left = (widthPx - size) / 2f
@@ -70,19 +73,19 @@ object ShapeRenderer {
 
         val corner = CornerPathEffect(size * 0.05f)
         val fillPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = geometry.color
+            this.color = color
             style = Paint.Style.FILL
             pathEffect = corner
         }
         val trackPaint = Paint(Paint.ANTI_ALIAS_FLAG).apply {
-            color = withAlpha(geometry.color, 0x40)
+            this.color = withAlpha(color, 0x40)
             style = Paint.Style.STROKE
             strokeWidth = stroke
             strokeJoin = Paint.Join.ROUND
             strokeCap = Paint.Cap.ROUND
             pathEffect = corner
         }
-        val progressPaint = Paint(trackPaint).apply { color = geometry.color }
+        val progressPaint = Paint(trackPaint).apply { this.color = color }
 
         canvas.drawPath(fillPath, fillPaint)
         canvas.drawPath(ringPath, trackPaint)
@@ -113,8 +116,9 @@ object ShapeRenderer {
         val maxWidth = geometry.textWidth * shapeSize
         val showName = sizeDp >= 72f && countdown.name.isNotBlank()
 
-        val mainPaint = textPaint(Typeface.BOLD, shapeSize * (if (days > 0) 0.32f else 0.17f) * textScale(countdown.shape), maxWidth, main)
-        val namePaint = textPaint(Typeface.NORMAL, shapeSize * 0.1f * textScale(countdown.shape), maxWidth, countdown.name)
+        val scale = textScale(countdown.shape) * countdown.textSize.scale
+        val mainPaint = textPaint(Typeface.BOLD, shapeSize * (if (days > 0) 0.32f else 0.17f) * scale, maxWidth, main)
+        val namePaint = textPaint(Typeface.NORMAL, shapeSize * 0.1f * scale, maxWidth, countdown.name)
 
         // Höhe der Großbuchstaben/Ziffern ≈ 0,72 × Schriftgröße; Block aus Zahl und Name vertikal zentrieren.
         val mainHeight = mainPaint.textSize * 0.72f

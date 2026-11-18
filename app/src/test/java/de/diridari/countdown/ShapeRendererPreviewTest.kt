@@ -29,5 +29,14 @@ class ShapeRendererPreviewTest {
                 }
             }
         }
+        // Eigene Farbe und Textgrößen
+        CountdownTextSize.entries.forEach { size ->
+            val countdown = Countdown("Urlaub", CountdownType.SALARY, CountdownShape.CIRCLE,
+                color = CountdownColors.PALETTE[4], textSize = size)
+            val bitmap = ShapeRenderer.render(countdown, today, 330, 330, 110f)
+            File(dir, "color_size_${size.name.lowercase()}.png").outputStream().use {
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, it)
+            }
+        }
     }
 }

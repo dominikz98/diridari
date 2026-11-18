@@ -11,11 +11,10 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
 import java.time.LocalDate
-import java.time.YearMonth
 import java.time.format.DateTimeFormatter
 import java.util.Locale
 
-/** Übersicht der Countdowns und der nächsten Gehalt-Stichtage. */
+/** Übersicht der Countdowns. */
 class MainActivity : Activity() {
 
     private val dateFormat = DateTimeFormatter.ofPattern("EEEE, dd.MM.yyyy", Locale.GERMAN)
@@ -32,7 +31,6 @@ class MainActivity : Activity() {
         super.onResume()
         CountdownWidgetProvider.updateAll(this)
         showCountdowns()
-        showUpcomingSalaryDates()
     }
 
     private fun showCountdowns() {
@@ -74,10 +72,4 @@ class MainActivity : Activity() {
             }
     }
 
-    private fun showUpcomingSalaryDates() {
-        val start = YearMonth.from(Deadline.next(LocalDate.now()))
-        findViewById<TextView>(R.id.upcoming).text = (0L until 12L).joinToString("\n") {
-            Deadline.forMonth(start.plusMonths(it)).format(dateFormat)
-        }
-    }
 }

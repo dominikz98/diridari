@@ -13,6 +13,26 @@ enum class CountdownShape(val label: String) {
     PAUL("Paul"), // Herz
 }
 
+enum class CountdownTextSize(val scale: Float) {
+    SMALL(0.8f),
+    MEDIUM(1f),
+    LARGE(1.25f),
+}
+
+/** Farben zur Auswahl pro Countdown; die ersten vier sind die Standardfarben der Formen. */
+object CountdownColors {
+    val PALETTE = listOf(
+        0xFF1565C0.toInt(), // Blau
+        0xFF2E7D32.toInt(), // Grün
+        0xFFEF6C00.toInt(), // Orange
+        0xFFD81B60.toInt(), // Pink
+        0xFF6A1B9A.toInt(), // Lila
+        0xFFC62828.toInt(), // Rot
+        0xFF00838F.toInt(), // Türkis
+        0xFF424242.toInt(), // Grau
+    )
+}
+
 /**
  * Ein Countdown, wie er in einem Widget angezeigt wird.
  *
@@ -25,6 +45,9 @@ data class Countdown(
     val shape: CountdownShape,
     val date: LocalDate? = null,
     val createdAt: LocalDate = LocalDate.now(),
+    /** Füll- und Ringfarbe; `null` = Standardfarbe der Form. */
+    val color: Int? = null,
+    val textSize: CountdownTextSize = CountdownTextSize.MEDIUM,
 ) {
     fun target(today: LocalDate): LocalDate = when (type) {
         CountdownType.SALARY -> Deadline.next(today)

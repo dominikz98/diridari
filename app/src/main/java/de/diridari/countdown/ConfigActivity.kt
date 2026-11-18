@@ -6,12 +6,15 @@ import android.app.PendingIntent
 import android.appwidget.AppWidgetManager
 import android.content.ComponentName
 import android.content.Intent
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.Button
 import android.widget.EditText
+import android.view.View
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.RadioGroup
 import android.widget.Toast
 import java.time.LocalDate
@@ -33,10 +36,14 @@ class ConfigActivity : Activity() {
     private var type = CountdownType.SALARY
     private var shape = CountdownShape.CIRCLE
     private var date: LocalDate? = null
+    /** `null` = Standardfarbe der Form. */
+    private var color: Int? = null
+    private var textSize = CountdownTextSize.MEDIUM
 
     private lateinit var nameView: EditText
     private lateinit var pickDate: Button
     private lateinit var preview: ImageView
+    private lateinit var colorRow: LinearLayout
 
     private val dateFormat = DateTimeFormatter.ofPattern("EE, dd.MM.yyyy", Locale.GERMAN)
 
@@ -45,6 +52,12 @@ class ConfigActivity : Activity() {
         CountdownShape.TRIANGLE to R.id.shapeTriangle,
         CountdownShape.SQUARE to R.id.shapeSquare,
         CountdownShape.PAUL to R.id.shapePaul,
+    )
+
+    private val sizeIds = mapOf(
+        CountdownTextSize.SMALL to R.id.sizeSmall,
+        CountdownTextSize.MEDIUM to R.id.sizeMedium,
+        CountdownTextSize.LARGE to R.id.sizeLarge,
     )
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -58,10 +71,13 @@ class ConfigActivity : Activity() {
         type = start.type
         shape = start.shape
         date = start.date
+        color = start.color
+        textSize = start.textSize
 
         nameView = findViewById(R.id.name)
         pickDate = findViewById(R.id.pickDate)
         preview = findViewById(R.id.preview)
+        colorRow = findViewById(R.id.colorRow)
 
         nameView.setText(start.name)
         nameView.addTextChangedListener(object : TextWatcher {
@@ -90,9 +106,51 @@ class ConfigActivity : Activity() {
             }
         }
 
+        findViewById<RadioGroup>(R.id.sizeGroup).apply {
+            check(sizeIds.getValue(textSize))
+            setOnCheckedChangeListener { _, checked ->
+                textSize = sizeIds.entries.first { it.value == checked }.key
+                refresh()
+            }
+        }
+
+        buildColorRow()
         pickDate.setOnClickListener { showDatePicker() }
         findViewById<Button>(R.id.save).setOnClickListener { save() }
         refresh()
+    }
+
+    private fun buildColorRow() {
+        val density = resources.displayMetrics.density
+        val sizePx = (36 * density).toInt()
+        CountdownColors.PALETTE.forEachIndexed { index, swatch ->
+            colorRow.addView(View(this).apply {
+                tag = swatch
+                contentDescription = getString(R.string.color_swatch, index + 1)
+                setOnClickListener {
+                    // Standardfarbe der Form als "folgt der Form" speichern.
+                    color = if (swatch == ShapeRenderer.color(shape)) null else swatch
+                    refresh()
+                }
+            }, LinearLayout.LayoutParams(0, sizePx, 1f).apply {
+                marginEnd = (6 * density).toInt()
+            })
+        }
+    }
+
+    private fun refreshColorRow() {
+        val density = resources.displayMetrics.density
+        val selected = color ?: ShapeRenderer.color(shape)
+        for (i in 0 until colorRow.childCount) {
+            val view = colorRow.getChildAt(i)
+            val swatch = view.tag as Int
+            view.background = GradientDrawable().apply {
+                setShape(GradientDrawable.OVAL)
+                setColor(swatch)
+                if (swatch == selected) setStroke((3 * density).toInt(), 0xFF000000.toInt())
+            }
+            view.isSelected = swatch == selected
+        }
     }
 
     private fun isWidget() = widgetId != AppWidgetManager.INVALID_APPWIDGET_ID
@@ -115,13 +173,14 @@ class ConfigActivity : Activity() {
         val prev = original
         // Ladering beginnt neu, wenn sich das Ziel ändert.
         val createdAt = if (prev != null && prev.type == type && prev.date == countdownDate) prev.createdAt else LocalDate.now()
-        return Countdown(name, type, shape, countdownDate, createdAt)
+        return Countdown(name, type, shape, countdownDate, createdAt, color, textSize)
     }
 
     private fun refresh() {
         pickDate.isEnabled = type == CountdownType.DATE
         pickDate.text = if (type == CountdownType.DATE && date != null) date!!.format(dateFormat) else getString(R.string.pick_date)
 
+        refreshColorRow()
         val px = (160 * resources.displayMetrics.density).toInt()
         preview.setImageBitmap(ShapeRenderer.render(current(), LocalDate.now(), px, px, 160f))
     }
