@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">Diridari</string>
+    <string name="widget_description">Countdown bis 3 Bankarbeitstage (Bayern) vor Monatsende</string>
+    <string name="today">Heute!</string>
+    <string name="day">Tag</string>
+    <string name="days">Tage</string>
+    <string name="summary">Noch %1$d Tage bis %2$s</string>
+    <string name="upcoming_title">Nächste Stichtage</string>
+    <string name="rule">Stichtag: der Bankarbeitstag, nach dem bis zum 1. des Folgemonats noch genau 3 Bankarbeitstage liegen. Bankarbeitstage: Mo–Fr ohne Feiertage in Bayern (inkl. Mariä Himmelfahrt) sowie ohne 24.12. und 31.12.</string>
+</resources>
