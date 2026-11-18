@@ -11,7 +11,6 @@
     <string name="add_countdown">Neuer Countdown</string>
     <string name="countdowns_title">Countdowns</string>
     <string name="no_countdowns">Noch keine Countdowns. Lege einen an oder zieh das Widget auf den Homescreen.</string>
-    <string name="upcoming_title">Nächste Gehalt-Stichtage</string>
     <string name="rule">Gehalt-Stichtag: der Bankarbeitstag, nach dem bis zum 1. des Folgemonats noch genau 3 Bankarbeitstage liegen. Bankarbeitstage: Mo–Fr ohne Feiertage in Bayern (inkl. Mariä Himmelfahrt) sowie ohne 24.12. und 31.12.</string>
 
     <string name="preview">Vorschau</string>
@@ -26,6 +25,12 @@
     <string name="shape_triangle">Dreieck</string>
     <string name="shape_square">Viereck</string>
     <string name="shape_paul">Paul</string>
+    <string name="label_color">Farbe</string>
+    <string name="color_swatch">Farbe %1$d</string>
+    <string name="label_text_size">Textgröße</string>
+    <string name="size_small">Klein</string>
+    <string name="size_medium">Mittel</string>
+    <string name="size_large">Groß</string>
     <string name="save">Speichern</string>
     <string name="error_no_date">Bitte ein Datum wählen</string>
     <string name="error_no_pin">Dein Launcher kann keine Widgets anheften. Bitte das Widget über den Homescreen hinzufügen.</string>

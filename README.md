@@ -4,6 +4,7 @@ Android-App mit Countdown-Widgets für den Homescreen.
 
 - Mehrere Countdowns, jeder mit eigenem Namen: Regel **Gehalt** (siehe unten) oder ein frei wählbares Datum
 - Form wählbar: Kreis, Dreieck, Viereck oder **Paul** (Herz)
+- Farbe (8 zur Auswahl, Standard je Form) und Textgröße (Klein, Mittel, Groß) pro Countdown
 - Um die Form läuft ein Ladering, der den Anteil der verbleibenden Tage zeigt
   (Gehalt: vom letzten bis zum nächsten Stichtag, Datum: vom Anlegen bis zum Datum)
 - Größe frei veränderbar, ab 1×1
@@ -48,4 +49,4 @@ Ohne Android Studio, über die Kommandozeile:
 ```
 
 Die APK aufs Handy kopieren und installieren, dann das Widget über den Homescreen hinzufügen.
-Die App selbst zeigt die Stichtage der nächsten zwölf Monate.
+Die App selbst listet alle Countdowns; per Tipp lassen sie sich bearbeiten.

@@ -36,6 +36,9 @@ object CountdownStore {
                 shape = CountdownShape.valueOf(json.getString("shape")),
                 date = json.optString("date").takeIf { it.isNotEmpty() }?.let(LocalDate::parse),
                 createdAt = LocalDate.parse(json.getString("createdAt")),
+                color = if (json.has("color")) json.getInt("color") else null,
+                textSize = json.optString("textSize").takeIf { it.isNotEmpty() }
+                    ?.let(CountdownTextSize::valueOf) ?: CountdownTextSize.MEDIUM,
             )
         }.getOrNull()
     }
@@ -47,6 +50,8 @@ object CountdownStore {
             .put("shape", countdown.shape.name)
             .put("date", countdown.date?.toString() ?: "")
             .put("createdAt", countdown.createdAt.toString())
+            .put("textSize", countdown.textSize.name)
+        countdown.color?.let { json.put("color", it) }
         prefs(context).edit().putString(key, json.toString()).apply()
     }
 }

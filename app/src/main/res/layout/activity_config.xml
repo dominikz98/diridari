@@ -97,6 +97,49 @@
                 android:text="@string/shape_paul" />
         </RadioGroup>
 
+        <TextView
+            style="@style/Label"
+            android:text="@string/label_color" />
+
+        <LinearLayout
+            android:id="@+id/colorRow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:orientation="horizontal" />
+
+        <TextView
+            style="@style/Label"
+            android:text="@string/label_text_size" />
+
+        <RadioGroup
+            android:id="@+id/sizeGroup"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/sizeSmall"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/size_small" />
+
+            <RadioButton
+                android:id="@+id/sizeMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/size_medium" />
+
+            <RadioButton
+                android:id="@+id/sizeLarge"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="@string/size_large" />
+        </RadioGroup>
+
         <Button
             android:id="@+id/save"
             android:layout_width="match_parent"
