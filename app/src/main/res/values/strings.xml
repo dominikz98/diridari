@@ -1,10 +1,32 @@
 <resources>
     <string name="app_name">Diridari</string>
-    <string name="widget_description">Countdown bis 3 Bankarbeitstage (Bayern) vor Monatsende</string>
-    <string name="today">Heute!</string>
-    <string name="day">Tag</string>
-    <string name="days">Tage</string>
-    <string name="summary">Noch %1$d Tage bis %2$s</string>
-    <string name="upcoming_title">Nächste Stichtage</string>
-    <string name="rule">Stichtag: der Bankarbeitstag, nach dem bis zum 1. des Folgemonats noch genau 3 Bankarbeitstage liegen. Bankarbeitstage: Mo–Fr ohne Feiertage in Bayern (inkl. Mariä Himmelfahrt) sowie ohne 24.12. und 31.12.</string>
+    <string name="widget_description">Countdown mit Ladering: Gehalt-Stichtag oder eigenes Datum</string>
+
+    <string name="days_left">%1$s: noch %2$d Tage</string>
+    <string name="one_day_left">%1$s: noch 1 Tag</string>
+    <string name="today_reached">%1$s: heute</string>
+    <string name="past">%1$s: vorbei</string>
+    <string name="row">%2$s\n%3$s</string>
+
+    <string name="add_countdown">Neuer Countdown</string>
+    <string name="countdowns_title">Countdowns</string>
+    <string name="no_countdowns">Noch keine Countdowns. Lege einen an oder zieh das Widget auf den Homescreen.</string>
+    <string name="upcoming_title">Nächste Gehalt-Stichtage</string>
+    <string name="rule">Gehalt-Stichtag: der Bankarbeitstag, nach dem bis zum 1. des Folgemonats noch genau 3 Bankarbeitstage liegen. Bankarbeitstage: Mo–Fr ohne Feiertage in Bayern (inkl. Mariä Himmelfahrt) sowie ohne 24.12. und 31.12.</string>
+
+    <string name="preview">Vorschau</string>
+    <string name="label_name">Name</string>
+    <string name="hint_name">z.B. Urlaub</string>
+    <string name="label_type">Ziel</string>
+    <string name="type_salary">Gehalt (3 Bankarbeitstage vor Monatsende)</string>
+    <string name="type_date">Eigenes Datum</string>
+    <string name="pick_date">Datum wählen</string>
+    <string name="label_shape">Form</string>
+    <string name="shape_circle">Kreis</string>
+    <string name="shape_triangle">Dreieck</string>
+    <string name="shape_square">Viereck</string>
+    <string name="shape_paul">Paul</string>
+    <string name="save">Speichern</string>
+    <string name="error_no_date">Bitte ein Datum wählen</string>
+    <string name="error_no_pin">Dein Launcher kann keine Widgets anheften. Bitte das Widget über den Homescreen hinzufügen.</string>
 </resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="110dp"
+    android:height="110dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+    <!-- Track -->
+    <path
+        android:pathData="M50,4A46,46 0,1 1,50 96A46,46 0,1 1,50 4"
+        android:strokeWidth="7"
+        android:strokeColor="#401565C0" />
+    <!-- Fortschritt (etwa 3/4) -->
+    <path
+        android:pathData="M50,4A46,46 0,1 1,50 96A46,46 0,0 1,4 50"
+        android:strokeLineCap="round"
+        android:strokeWidth="7"
+        android:strokeColor="#FF1565C0" />
+    <path
+        android:fillColor="#FF1565C0"
+        android:pathData="M50,12A38,38 0,1 1,50 88A38,38 0,1 1,50 12" />
+</vector>

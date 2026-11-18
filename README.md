@@ -1,6 +1,16 @@
 # Diridari
 
-Android-App mit einem Homescreen-Widget, das die Tage bis zum nächsten Stichtag herunterzählt.
+Android-App mit Countdown-Widgets für den Homescreen.
+
+- Mehrere Countdowns, jeder mit eigenem Namen: Regel **Gehalt** (siehe unten) oder ein frei wählbares Datum
+- Form wählbar: Kreis, Dreieck, Viereck oder **Paul** (Herz)
+- Um die Form läuft ein Ladering, der den Anteil der verbleibenden Tage zeigt
+  (Gehalt: vom letzten bis zum nächsten Stichtag, Datum: vom Anlegen bis zum Datum)
+- Größe frei veränderbar, ab 1×1
+- Anlegen über „Neuer Countdown“ in der App oder durch Ziehen des Widgets auf den Homescreen;
+  Tipp aufs Widget öffnet die Einstellungen
+
+`./gradlew test` rendert alle Formen zusätzlich als PNG nach `app/build/previews`.
 
 ## Stichtag
 
