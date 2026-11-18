@@ -26,7 +26,16 @@ Die Logik steckt in [`BankCalendar.kt`](app/src/main/java/de/diridari/countdown/
 
 ## Bauen
 
-Projekt in Android Studio öffnen (lädt Gradle 8.11.1 und das Android SDK selbst), dann `app` starten.
-Das Widget über den Homescreen hinzufügen. Die App selbst zeigt die Stichtage der nächsten zwölf Monate.
+Ohne Android Studio, über die Kommandozeile:
 
-Unit-Tests: `./gradlew test`
+- JDK 17 oder neuer (z.B. das von Rider: `%LOCALAPPDATA%\Programs\Rider\jbr`) als `JAVA_HOME`
+- Android SDK mit `platforms;android-35` und `build-tools;35.0.0`, Pfad in `local.properties`:
+  `sdk.dir=C\:\\Users\\<user>\\Android\\Sdk`
+
+```
+./gradlew test           # Unit-Tests
+./gradlew assembleDebug  # APK: app/build/outputs/apk/debug/app-debug.apk
+```
+
+Die APK aufs Handy kopieren und installieren, dann das Widget über den Homescreen hinzufügen.
+Die App selbst zeigt die Stichtage der nächsten zwölf Monate.
